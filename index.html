@@ -7,21 +7,58 @@
     <title>Document</title>
   </head>
   <body>
-    <form id="bookForm">
-      <label for="author">Author:</label>
-      <input type="text" id="author" name="author" required /><br /><br />
+    <header class="header">
+      <div class="header__container container">
+        <img
+          class="logo"
+          src="images/book-library-high-resolution-logo-transparent.png"
+          alt=""
+        />
+        <button class="add-book-button">+ Add Book</button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="books container">
+        <div class="books__grid"></div>
+      </section>
+    </main>
 
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" required /><br /><br />
+    <div id="form-modal" class="modal modal--overlay" style="display: none">
+      <div class="modal__content">
+        <h2 class="modal__title">Add a New Book</h2>
+        <form id="book-form" class="modal__form">
+          <label for="author" class="modal__label">Author:</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            class="modal__input"
+            required
+          /><br /><br />
+          <label for="title" class="modal__label">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="modal__input"
+            required
+          /><br /><br />
+          <label for="pages" class="modal__label">Pages:</label>
+          <input
+            type="number"
+            id="pages"
+            name="pages"
+            class="modal__input"
+            required
+          /><br /><br />
+          <button type="submit" class="modal__button">Add</button>
+          <button type="button" class="modal__button modal__button--close">
+            Close
+          </button>
+        </form>
+      </div>
+    </div>
 
-      <label for="pages">Pages:</label>
-      <input type="number" id="pages" name="pages" required /><br /><br />
-
-      <button type="submit">Add Book</button>
-    </form>
-    <button class="add">add</button>
-
-    <div class="books-container"></div>
     <script src="library.js"></script>
   </body>
 </html>
