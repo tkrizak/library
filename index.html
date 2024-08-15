@@ -20,7 +20,7 @@
     <main class="main">
       <section class="books container">
         <table id="booksTable" class="books__table">
-          <thead>
+          <thead class="books__head">
             <tr>
               <th>Title</th>
               <th>Author</th>
@@ -29,43 +29,59 @@
               <th>Removal</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody class="books__body"></tbody>
         </table>
       </section>
     </main>
 
-    <div id="form-modal" class="modal modal--overlay" style="display: none">
+    <!-- FORM MODAL -->
+    <div id="formModal" class="modal" style="display: flex">
       <div class="modal__content">
-        <h2 class="modal__title">Add a New Book</h2>
-        <form id="book-form" class="modal__form">
-          <label for="author" class="modal__label">Author:</label>
-          <input
-            type="text"
-            id="author"
-            name="author"
-            class="modal__input"
-            required
-          /><br /><br />
-          <label for="title" class="modal__label">Title:</label>
+        <h2 class="modal__title">Add a new book</h2>
+        <form id="bookForm" class="modal__form">
           <input
             type="text"
             id="title"
             name="title"
             class="modal__input"
+            placeholder="Title"
             required
-          /><br /><br />
-          <label for="pages" class="modal__label">Pages:</label>
+          />
+
+          <input
+            type="text"
+            id="author"
+            name="author"
+            class="modal__input"
+            placeholder="Author"
+            required
+          />
+
           <input
             type="number"
             id="pages"
             name="pages"
             class="modal__input"
+            placeholder="Pages"
             required
-          /><br /><br />
-          <button type="submit" class="modal__button">Add</button>
-          <button type="button" class="modal__button modal__button--close">
-            Close
-          </button>
+          />
+          <div class="modal__read">
+            <input
+              type="checkbox"
+              id="read"
+              name="read"
+              class="modal__checkbox"
+            />
+            <label for="read" class="modal__label"
+              >Have you read the book?</label
+            >
+          </div>
+          <div class="modal__buttons">
+            <button type="submit" class="modal__button">Add</button>
+            <button type="button" class="modal__button modal__button--close">
+              Close
+            </button>
+          </div>
         </form>
       </div>
     </div>

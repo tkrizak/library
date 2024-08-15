@@ -1,5 +1,5 @@
 const addBookBtn = document.querySelector('.add-book-button');
-const formModal = document.getElementById('form-modal');
+const formModal = document.getElementById('formModal');
 const closeFormBtn = document.querySelector('.modal__button--close');
 
 const myLibrary = [
@@ -7,31 +7,37 @@ const myLibrary = [
     author: 'Filip',
     title: 'harry potter',
     pages: '22',
+    isRead: false,
   },
   {
     author: 'John',
     title: 'lord of the rings',
     pages: '99',
+    isRead: true,
   },
   {
     author: 'Tom',
     title: 'Dune',
     pages: '65',
+    isRead: false,
   },
 ];
 
 // Book constructor
 
-function Book(author, title, pages) {
+function Book(author, title, pages, isRead) {
   this.author = author;
   this.title = title;
   this.pages = pages;
+  this.isRead = isRead;
 }
 
 // Handles adding individual book to the book library
 
-function addBookToLibrary(author, title, pages) {
-  myLibrary.push(new Book(author, title, pages));
+function addBookToLibrary(author, title, pages, readCheckbox) {
+  const isRead = readCheckbox.checked;
+
+  myLibrary.push(new Book(author, title, pages, isRead));
   console.log(myLibrary);
   displayBooks();
 }
@@ -40,14 +46,15 @@ console.log(myLibrary);
 
 // Handles book submission
 
-document.getElementById('book-form').addEventListener('submit', (event) => {
+document.getElementById('bookForm').addEventListener('submit', (event) => {
   event.preventDefault();
 
   const author = document.getElementById('author').value;
   const title = document.getElementById('title').value;
   const pages = document.getElementById('pages').value;
+  const readCheckbox = document.getElementById('read');
 
-  addBookToLibrary(author, title, pages);
+  addBookToLibrary(author, title, pages, readCheckbox);
 
   hideFormModal();
 });
@@ -55,11 +62,11 @@ document.getElementById('book-form').addEventListener('submit', (event) => {
 // Handles displaying the book form
 
 function showFormModal() {
-  document.getElementById('form-modal').style.display = 'flex';
+  document.getElementById('formModal').style.display = 'flex';
 }
 
 function hideFormModal() {
-  document.getElementById('form-modal').style.display = 'none';
+  document.getElementById('formModal').style.display = 'none';
 }
 
 addBookBtn.addEventListener('click', () => {
@@ -72,38 +79,13 @@ closeFormBtn.addEventListener('click', () => {
 
 // Hides form modal if the user clicks outside of modal interface
 
-document.getElementById('form-modal').addEventListener('click', (event) => {
-  if (event.target === document.getElementById('form-modal')) {
+document.getElementById('formModal').addEventListener('click', (event) => {
+  if (event.target === document.getElementById('formModal')) {
     hideFormModal();
   }
 });
 
-// Displays submitted book inside myLibrary on the page
-
-/* function displayBooks() {
-  // Clear current book list to prevent book duplication
-  booksGrid.innerHTML = '';
-
-  myLibrary.forEach((book) => {
-    // Create elements for each book
-    const bookDiv = document.createElement('div');
-    bookDiv.classList.add('book');
-    const bookAuthor = document.createElement('p');
-    const bookTitle = document.createElement('p');
-    const bookPages = document.createElement('p');
-
-    // Give each book correct text
-    bookAuthor.textContent = book.author;
-    bookTitle.textContent = book.title;
-    bookPages.textContent = `${book.pages} pages`;
-
-    // Add correct elements to correct DOM node
-    booksGrid.appendChild(bookDiv);
-    bookDiv.appendChild(bookAuthor);
-    bookDiv.appendChild(bookTitle);
-    bookDiv.appendChild(bookPages);
-  });
-} */
+// Displays submitted book inside myLibrary as a table on the page
 
 function displayBooks() {
   const booksTableBody = document
@@ -126,7 +108,21 @@ function displayBooks() {
     pagesCell.textContent = `${book.pages} pages`;
 
     const statusButton = document.createElement('button');
-    statusButton.textContent = 'Read';
+    statusButton.textContent = book.isRead ? 'Read' : 'Not Read';
+    statusButton.className = book.isRead
+      ? 'status-button-read'
+      : 'status-button-not-read';
+
+    // User can change read status
+
+    statusButton.addEventListener('click', () => {
+      book.isRead = !book.isRead;
+      statusButton.textContent = book.isRead ? 'Read' : 'Not Read';
+      statusButton.className = book.isRead
+        ? 'status-button-read'
+        : 'status-button-not-read';
+      console.log(myLibrary);
+    });
 
     statusCell.appendChild(statusButton);
 
