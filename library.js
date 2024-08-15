@@ -1,4 +1,3 @@
-const booksGrid = document.querySelector('.books__grid');
 const addBookBtn = document.querySelector('.add-book-button');
 const formModal = document.getElementById('form-modal');
 const closeFormBtn = document.querySelector('.modal__button--close');
@@ -39,6 +38,20 @@ function addBookToLibrary(author, title, pages) {
 
 console.log(myLibrary);
 
+// Handles book submission
+
+document.getElementById('book-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const author = document.getElementById('author').value;
+  const title = document.getElementById('title').value;
+  const pages = document.getElementById('pages').value;
+
+  addBookToLibrary(author, title, pages);
+
+  hideFormModal();
+});
+
 // Handles displaying the book form
 
 function showFormModal() {
@@ -65,23 +78,9 @@ document.getElementById('form-modal').addEventListener('click', (event) => {
   }
 });
 
-// Handles book submission
-
-document.getElementById('book-form').addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const author = document.getElementById('author').value;
-  const title = document.getElementById('title').value;
-  const pages = document.getElementById('pages').value;
-
-  addBookToLibrary(author, title, pages);
-
-  hideFormModal();
-});
-
 // Displays submitted book inside myLibrary on the page
 
-function displayBooks() {
+/* function displayBooks() {
   // Clear current book list to prevent book duplication
   booksGrid.innerHTML = '';
 
@@ -103,6 +102,51 @@ function displayBooks() {
     bookDiv.appendChild(bookAuthor);
     bookDiv.appendChild(bookTitle);
     bookDiv.appendChild(bookPages);
+  });
+} */
+
+function displayBooks() {
+  const booksTableBody = document
+    .getElementById('booksTable')
+    .querySelector('tbody');
+
+  booksTableBody.innerHTML = '';
+
+  myLibrary.forEach((book, index) => {
+    const row = document.createElement('tr');
+
+    const titleCell = document.createElement('td');
+    const authorCell = document.createElement('td');
+    const pagesCell = document.createElement('td');
+    const statusCell = document.createElement('td');
+    const removalCell = document.createElement('td');
+
+    titleCell.textContent = book.title;
+    authorCell.textContent = book.author;
+    pagesCell.textContent = `${book.pages} pages`;
+
+    const statusButton = document.createElement('button');
+    statusButton.textContent = 'Read';
+
+    statusCell.appendChild(statusButton);
+
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.addEventListener('click', () => {
+      myLibrary.splice(index, 1);
+      displayBooks();
+      console.log(myLibrary);
+    });
+
+    removalCell.appendChild(removeButton);
+
+    row.appendChild(titleCell);
+    row.appendChild(authorCell);
+    row.appendChild(pagesCell);
+    row.appendChild(statusCell);
+    row.appendChild(removalCell);
+
+    booksTableBody.appendChild(row);
   });
 }
 
