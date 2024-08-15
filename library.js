@@ -4,21 +4,21 @@ const closeFormBtn = document.querySelector('.modal__button--close');
 
 const myLibrary = [
   {
-    author: 'Filip',
-    title: 'harry potter',
-    pages: '22',
+    author: 'J. K. Rowling',
+    title: 'Harry Potter and the Prisoner of Azkaban',
+    pages: '317',
     isRead: false,
   },
   {
-    author: 'John',
-    title: 'lord of the rings',
-    pages: '99',
-    isRead: true,
+    author: 'J.R.R. Tolkien',
+    title: 'The Fellowship of the Ring',
+    pages: '417',
+    isRead: false,
   },
   {
-    author: 'Tom',
+    author: 'Frank Herbert',
     title: 'Dune',
-    pages: '65',
+    pages: '412',
     isRead: false,
   },
 ];
@@ -128,6 +128,7 @@ function displayBooks() {
 
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
+    removeButton.classList.add('remove-button');
     removeButton.addEventListener('click', () => {
       myLibrary.splice(index, 1);
       displayBooks();

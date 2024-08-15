@@ -44,7 +44,7 @@ button {
 }
 
 .container {
-  width: min(1000px, 100% - 2rem);
+  width: min(900px, 100% - 2rem);
   margin-inline: auto;
 }
 
@@ -68,6 +68,7 @@ button {
   font-weight: 500;
   padding: 0.3em;
   color: #333333;
+  border-radius: 8px;
 }
 
 .book {
@@ -160,13 +161,48 @@ button {
 
 /* BOOKS TABLE */
 
+.books {
+  padding-block: 3rem;
+}
+
 .books__table {
   width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+.books__head {
+  background-color: #333333;
+  color: #ededed;
+}
+
+th {
+  cursor: default;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 1.5rem;
+}
+
+td {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 1.25rem 1.5rem;
+  line-height: 1.2;
 }
 
 th,
 td {
+  border: none;
   text-align: left;
+}
+
+.books__table button {
+  border: none;
+  border-radius: 6px;
+  width: 120px;
+  padding: 0.4em 0.5em;
 }
 
 .status-button-read {
@@ -175,4 +211,8 @@ td {
 
 .status-button-not-read {
   background-color: lightcoral;
+}
+
+.remove-button {
+  background-color: orange;
 }
