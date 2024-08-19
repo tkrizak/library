@@ -56,33 +56,40 @@
       <div class="modal__content">
         <h2 class="modal__title">Add book to the library</h2>
         <form id="bookForm" class="modal__form">
-          <input
-            type="text"
-            id="title"
-            name="title"
-            placeholder="Title"
-            maxlength="100"
-            class="modal__input"
-          />
+          <div class="modal__form-group">
+            <label for="title" class="required-input">*</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Title"
+              maxlength="100"
+              class="modal__input"
+            />
+          </div>
+          <div class="modal__form-group">
+            <label for="author" class="required-input">*</label>
+            <input
+              type="text"
+              id="author"
+              name="author"
+              placeholder="Author"
+              maxlength="100"
+              class="modal__input"
+            />
+          </div>
 
-          <input
-            type="text"
-            id="author"
-            name="author"
-            placeholder="Author"
-            maxlength="100"
-            class="modal__input"
-          />
-
-          <input
-            type="number"
-            id="pages"
-            name="pages"
-            placeholder="Pages"
-            class="modal__input"
-            max="10000"
-          />
-          <div class="modal__read">
+          <div class="modal__form-group">
+            <input
+              type="number"
+              id="pages"
+              name="pages"
+              placeholder="Pages"
+              class="modal__input"
+              max="10000"
+            />
+          </div>
+          <div class="modal__form-group modal__read">
             <input
               type="checkbox"
               id="read"

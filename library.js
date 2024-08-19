@@ -5,20 +5,20 @@ const closeFormBtn = document.querySelector('.modal__button--close');
 
 const myLibrary = [
   {
-    author: 'J. K. Rowling',
     title: 'Harry Potter and the Prisoner of Azkaban',
+    author: 'J. K. Rowling',
     pages: '317',
     isReadStatus: true,
   },
   {
-    author: 'J.R.R. Tolkien',
     title: 'The Fellowship of the Ring',
+    author: 'J.R.R. Tolkien',
     pages: '417',
     isReadStatus: false,
   },
   {
-    author: 'Frank Herbert',
     title: 'Dune',
+    author: 'Frank Herbert',
     pages: '412',
     isReadStatus: true,
   },
@@ -26,9 +26,9 @@ const myLibrary = [
 
 // Book object constructor
 
-function Book(author, title, pages, isReadStatus) {
-  this.author = author;
+function Book(title, author, pages, isReadStatus) {
   this.title = title;
+  this.author = author;
   this.pages = pages;
   this.isReadStatus = isReadStatus;
 }
@@ -37,6 +37,7 @@ function Book(author, title, pages, isReadStatus) {
 
 function showFormModal() {
   formModal.classList.add('active');
+  document.getElementById('title').focus();
 }
 
 function hideFormModal() {
@@ -48,8 +49,8 @@ function hideFormModal() {
 // Removes errors from the form
 
 function clearFormErrors() {
-  const authorInput = document.getElementById('author');
   const titleInput = document.getElementById('title');
+  const authorInput = document.getElementById('author');
   authorInput.classList.remove('input-error');
   titleInput.classList.remove('input-error');
 }
@@ -75,31 +76,47 @@ document.getElementById('formModal').addEventListener('click', (event) => {
 bookForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const authorInput = document.getElementById('author');
   const titleInput = document.getElementById('title');
+  const authorInput = document.getElementById('author');
   const pagesInput = document.getElementById('pages');
 
-  const author = authorInput.value.trim();
   const title = titleInput.value.trim();
+  const author = authorInput.value.trim();
   const pages = pagesInput.value.trim();
   const isReadStatus = document.getElementById('read').checked;
 
-  // Handles empty required input fielnds
+  // Handles validation for required input fields
 
-  let isValid = true;
-
-  if (!author) {
-    authorInput.classList.add('input-error');
-    isValid = false;
-  }
+  let isValid;
 
   if (!title) {
     titleInput.classList.add('input-error');
     isValid = false;
+  } else {
+    titleInput.classList.remove('input-error');
+    isValid = true;
   }
 
+  if (!author) {
+    authorInput.classList.add('input-error');
+    isValid = false;
+  } else {
+    authorInput.classList.remove('input-error');
+    isValid = true;
+  }
+
+  // Focuses cursor on the first invalid input
+
+  if (!title) {
+    titleInput.focus();
+  } else if (!author) {
+    authorInput.focus();
+  }
+
+  // Submits the form if all inputs are valid
+
   if (isValid) {
-    addBookToLibrary(author, title, pages, isReadStatus);
+    addBookToLibrary(title, author, pages, isReadStatus);
     hideFormModal();
     bookForm.reset();
   }
@@ -107,8 +124,8 @@ bookForm.addEventListener('submit', (event) => {
 
 // Handles adding individual book to the book library
 
-function addBookToLibrary(author, title, pages, isReadStatus) {
-  myLibrary.push(new Book(author, title, pages, isReadStatus));
+function addBookToLibrary(title, author, pages, isReadStatus) {
+  myLibrary.push(new Book(title, author, pages, isReadStatus));
 
   displayBooks();
 }

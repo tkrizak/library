@@ -31,13 +31,20 @@ svg {
 }
 
 h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.3;
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 62.5rem) {
+  p {
+    font-size: 1.375rem;
+  }
 }
 
 button {
@@ -67,11 +74,17 @@ button {
 }
 
 .add-book-button {
-  font-size: 2rem;
+  font-size: 1.75rem;
   padding: 0.3em;
   color: #333333;
   border-radius: 8px;
   transition: all 0.15s ease-in-out;
+}
+
+@media (min-width: 62.5rem) {
+  .add-book-button {
+    font-size: 2rem;
+  }
 }
 
 .add-book-button:hover {
@@ -120,7 +133,7 @@ button {
 
 .modal__title {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid hsla(0, 0%, 20%, 0.5);
   cursor: default;
@@ -129,7 +142,19 @@ button {
 .modal__form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.375rem;
+}
+
+.modal__form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.required-input {
+  color: red;
+  font-size: 1.375rem;
+  margin-left: 5px;
+  line-height: 0.7;
 }
 
 .modal__label {
@@ -167,12 +192,11 @@ button {
 
 .modal__read {
   margin-top: 1rem;
-  margin-bottom: 1rem;
-  display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 1.25rem;
   border-bottom: 1px solid hsla(0, 0%, 20%, 0.5);
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.75rem;
 }
 
 .modal__checkbox {
@@ -223,7 +247,8 @@ button {
 /* BOOKS TABLE */
 
 .books__container {
-  padding-block: 4rem;
+  padding-block: 2.5rem;
+  overflow-x: auto;
 }
 
 .books__table {
@@ -236,31 +261,23 @@ button {
   color: #ededed;
 }
 
-tr {
-  border: 1px solid #333333;
+th,
+td {
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  padding: 1rem 1.25rem;
+  letter-spacing: 2px;
+  font-weight: 700;
 }
 
 th {
   cursor: default;
   text-transform: uppercase;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  padding: 1.5rem;
 }
 
-td {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  padding: 1.25rem 1.5rem;
-  line-height: 1.2;
-}
-
-th,
-td {
-  border: none;
-  text-align: left;
+tr {
+  border: 1px solid #333333;
 }
 
 .books__table button {
@@ -295,14 +312,29 @@ td {
   background-color: hsl(39, 100%, 50%);
 }
 
+@media (min-width: 62.5rem) {
+  .books__container {
+    padding-block: 3rem;
+  }
+
+  th,
+  td {
+    font-size: 1.25rem;
+    padding: 1.25rem 1.5rem;
+  }
+}
+
 /* FOOTER */
 
 .footer {
   font-family: 'Times New Roman', Times, serif;
+  text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
+  padding-block: 4rem 2rem;
 }
 
 .footer a {
@@ -314,4 +346,12 @@ td {
 
 .footer a:hover {
   color: hsl(0, 0%, 30%);
+}
+
+@media (min-width: 62.5rem) {
+  .footer {
+    flex-direction: row;
+    gap: 2rem;
+    padding-block: 2rem;
+  }
 }
