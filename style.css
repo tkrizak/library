@@ -254,11 +254,10 @@ button {
 .books__table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid black;
+  background-color: hsl(0, 0%, 80%);
 }
-.books__head {
-  background-color: #333333;
-  color: #ededed;
+
+tr {
 }
 
 th,
@@ -272,12 +271,14 @@ td {
 }
 
 th {
+  background-color: hsl(0, 0%, 20%);
+  color: hsl(0, 0%, 93%);
   cursor: default;
   text-transform: uppercase;
 }
 
-tr {
-  border: 1px solid #333333;
+tr:nth-child(even) {
+  background-color: hsl(0, 0%, 70%);
 }
 
 .books__table button {
