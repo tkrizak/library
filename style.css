@@ -249,15 +249,13 @@ button {
 .books__container {
   padding-block: 2.5rem;
   overflow-x: auto;
+  overflow-y: auto;
 }
 
 .books__table {
   width: 100%;
   border-collapse: collapse;
   background-color: hsl(0, 0%, 80%);
-}
-
-tr {
 }
 
 th,
